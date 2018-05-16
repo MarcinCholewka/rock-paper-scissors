@@ -71,11 +71,7 @@ function playerMove(userChoice) {
         lose(userChoice, computerChoice);
     } else if (userChoice === 'Scissors' && computerChoice === 'Rock') {
         lose(userChoice, computerChoice);
-    } else if (userChoice === 'r' && computerChoice === 'r') {
-        draw(userChoice, computerChoice);
-    } else if (userChoice === 'p' && computerChoice === 'p') {
-        draw(userChoice, computerChoice);
-    } else if (userChoice === 's' && computerChoice === 's') {
+    } else if (userChoice === computerChoice) {
         draw(userChoice, computerChoice);
     }
 };
