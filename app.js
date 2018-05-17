@@ -13,6 +13,7 @@ var rock_div = document.getElementById('Rock');
 var paper_div = document.getElementById('Paper');
 var scissors_div = document.getElementById('Scissors');
 var games_p = document.getElementById('games-message');
+var gameOver = 'GAME OVER!!! Press "Click to play" to play again.';
 
 
 function computerMove() {
@@ -29,11 +30,12 @@ function win(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.remove('red-glow');
     document.getElementById(userChoice).classList.remove('yellow-glow');
     document.getElementById(userChoice).classList.add('green-glow');
-    if (userScore >= rounds) {
+    if (userScore >= rounds) {       
         alert(name + '. You won the entire game ' + userScore + ':' + computerScore + '.');
-        alert('GAME OVER!!! Press "Click to play" to play again.');
+        alert(gameOver);
     }
 }
+
 
 function lose(userChoice, computerChoice) {
     computerScore++;
@@ -45,7 +47,7 @@ function lose(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.add('red-glow');
     if (computerScore >= rounds) {
         alert(name + '. You lost the entire game ' + userScore + ':' + computerScore + '.');
-        alert('GAME OVER!!! Press "Click to play" to play again.');
+        alert(gameOver);
     }
 };
 
@@ -88,17 +90,21 @@ function main() {
     })
 };
 
-
-button.addEventListener('click', function(){
+button.addEventListener('click', function() {
     userScore = 0;
     userScore_span.innerHTML = userScore;
     computerScore = 0;
     computerScore_span.innerHTML = computerScore;
     name = window.prompt('Hello. You want to play ??? What is your name?');
+    if (name === 'null') {
+        alert('This is not your name. Are you realy want to play???');
+    } else if (name) {
+        start();
     user_div.innerHTML = name;
     games = window.prompt('Hello ' + name + '. How many rounds you want to play to determine the winner ?');
     games_p.innerHTML = 'Win ' + games + ' rounds, to win the entire game.';
     rounds = parseInt(games);
+    }
 });
 
 main();
