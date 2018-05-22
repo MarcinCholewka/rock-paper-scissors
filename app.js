@@ -104,6 +104,11 @@ button.addEventListener('click', function() {
     } else if (name) {
     user_div.innerHTML = name;
     games = window.prompt('Hello ' + name + '. How many rounds you want to play to determine the winner ?');
+    if (games == 0) {
+        alert(name + '. You won the entire game hahaha');
+    } else if (typeof games === 'object') {
+        alert(name + '. Are you realy want to play??? Press "Click to play".');
+    }
     games_p.innerHTML = 'Win ' + games + ' rounds, to win the entire game.';
     rounds = parseInt(games);
     }
