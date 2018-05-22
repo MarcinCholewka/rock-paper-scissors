@@ -22,6 +22,7 @@ function computerMove() {
     return choices[randomNumber];
 }
 
+
 function win(userChoice, computerChoice) {
     userScore++
     userScore_span.innerHTML = userScore;
@@ -30,10 +31,9 @@ function win(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.remove('red-glow');
     document.getElementById(userChoice).classList.remove('yellow-glow');
     document.getElementById(userChoice).classList.add('green-glow');
-    if (userScore >= rounds) {       
+    if (userScore >= rounds) {  
         alert(name + '. You won the entire game ' + userScore + ':' + computerScore + '.');
-        alert(gameOver);
-    }
+    };
 }
 
 
@@ -47,7 +47,6 @@ function lose(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.add('red-glow');
     if (computerScore >= rounds) {
         alert(name + '. You lost the entire game ' + userScore + ':' + computerScore + '.');
-        alert(gameOver);
     }
 };
 
@@ -61,21 +60,25 @@ function draw(userChoice, computerChoice) {
 
 function playerMove(userChoice) {
     var computerChoice = computerMove();
-    if (userChoice === 'Rock' && computerChoice === 'Scissors') {
-        win(userChoice, computerChoice);
-    } else if (userChoice === 'Paper' && computerChoice === 'Rock') {
-        win(userChoice, computerChoice);
-    } else if (userChoice === 'Scissors' && computerChoice === 'Paper') {
-        win(userChoice, computerChoice);
-    } else if (userChoice === 'Rock' && computerChoice === 'Paper') {
-        lose(userChoice, computerChoice);
-    } else if (userChoice === 'Paper' && computerChoice === 'Scissors') {
-        lose(userChoice, computerChoice);
-    } else if (userChoice === 'Scissors' && computerChoice === 'Rock') {
-        lose(userChoice, computerChoice);
-    } else if (userChoice === computerChoice) {
-        draw(userChoice, computerChoice);
-    }
+    if (userScore < rounds && computerScore < rounds) {     // tutaj dodałem nowy warynek, ktory nie pozwala nic przycisnąć po zakończeniu rund.
+        if (userChoice === 'Rock' && computerChoice === 'Scissors') {
+            win(userChoice, computerChoice);
+        } else if (userChoice === 'Paper' && computerChoice === 'Rock') {
+            win(userChoice, computerChoice);
+        } else if (userChoice === 'Scissors' && computerChoice === 'Paper') {
+            win(userChoice, computerChoice);
+        } else if (userChoice === 'Rock' && computerChoice === 'Paper') {
+            lose(userChoice, computerChoice);
+        } else if (userChoice === 'Paper' && computerChoice === 'Scissors') {
+            lose(userChoice, computerChoice);
+        } else if (userChoice === 'Scissors' && computerChoice === 'Rock') {
+            lose(userChoice, computerChoice);
+        } else if (userChoice === computerChoice) {
+            draw(userChoice, computerChoice);
+        }
+} else {
+    alert(gameOver);
+}
 };
 
 function main() {
@@ -99,7 +102,6 @@ button.addEventListener('click', function() {
     if (name === 'null') {
         alert('This is not your name. Are you realy want to play???');
     } else if (name) {
-        start();
     user_div.innerHTML = name;
     games = window.prompt('Hello ' + name + '. How many rounds you want to play to determine the winner ?');
     games_p.innerHTML = 'Win ' + games + ' rounds, to win the entire game.';
