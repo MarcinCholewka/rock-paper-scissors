@@ -99,7 +99,7 @@ button.addEventListener('click', function() {
     computerScore = 0;
     computerScore_span.innerHTML = computerScore;
     name = window.prompt('Hello. You want to play ??? What is your name?');
-    if (name === 'null') {
+    if (name === 'null' || typeof name === 'null') {
         alert('This is not your name. Are you realy want to play???');
     } else if (name) {
     user_div.innerHTML = name;
@@ -107,8 +107,9 @@ button.addEventListener('click', function() {
     if (games == 0) {
         alert(name + '. You won the entire game hahaha');
     } else if (typeof games === 'object') {
+        games = 0;
         alert(name + '. Are you realy want to play??? Press "Click to play".');
-    }
+    } else
     games_p.innerHTML = 'Win ' + games + ' rounds, to win the entire game.';
     rounds = parseInt(games);
     }
